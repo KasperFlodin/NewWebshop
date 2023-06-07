@@ -1,0 +1,10 @@
+﻿global using Microsoft.EntityFrameworkCore;
+global using NewWebshopAPI.Database;
+global using NewWebshopAPI.Database.Entities;
+global using Microsoft.AspNetCore.Mvc;
+global using NewWebshopAPI.DTOs.ProductDTOs;
+global using NewWebshopAPI.Services;
+global using Microsoft.EntityFrameworkCore.Metadata.Internal;
+global using System.ComponentModel.DataAnnotations.Schema;
+global using System.ComponentModel.DataAnnotations;
+global using NewWebshopAPI.Repositories;
