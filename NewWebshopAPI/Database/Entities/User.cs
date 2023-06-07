@@ -1,9 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Data;
-
-namespace NewWebshopAPI.Database.Entities
+﻿namespace NewWebshopAPI.Database.Entities
 {
     public class User
     {

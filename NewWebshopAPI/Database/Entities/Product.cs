@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace NewWebshopAPI.Database.Entities
+﻿namespace NewWebshopAPI.Database.Entities
 {
     public class Product
     {

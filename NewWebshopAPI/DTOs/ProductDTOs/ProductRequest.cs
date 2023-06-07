@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace NewWebshopAPI.DTOs.ProductDTOs
+﻿namespace NewWebshopAPI.DTOs.ProductDTOs
 {
     public class ProductRequest
     {

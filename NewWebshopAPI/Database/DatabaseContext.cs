@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using NewWebshopAPI.Database.Entities;
-using System.Data;
-
-namespace NewWebshopAPI.Database
+﻿namespace NewWebshopAPI.Database
 {
     public class DatabaseContext : DbContext
     {

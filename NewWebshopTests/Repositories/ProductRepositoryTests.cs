@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using NewWebshopAPI.Database;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
