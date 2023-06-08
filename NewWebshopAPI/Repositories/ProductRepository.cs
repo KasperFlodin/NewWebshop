@@ -2,12 +2,12 @@
 {
     public interface IProductRepository
     {
-        Task<List<Product>> GetAllProducts();
-        Task<Product?> FindProductById(int productId);
-        Task<List<Product>> FindProductByType(string productType);
-        Task<Product?> CreateProduct(Product product);
-        Task<Product?> DeleteProductById(int productId);
-        Task<Product?> UpdateProductById(int productId, Product product);
+        Task<List<Product>> GetAllProductsAsync();
+        Task<Product?> FindProductByIdAsync(int productId);
+        Task<List<Product>> FindProductByTypeAsync(string productType);
+        Task<Product?> CreateProductAsync(Product product);
+        Task<Product?> DeleteProductByIdAsync(int productId);
+        Task<Product?> UpdateProductByIdAsync(int productId, Product product);
     }
     public class ProductRepository : IProductRepository
     {
@@ -19,23 +19,23 @@
         }
 
         // Read
-        public async Task<List<Product>> GetAllProducts()
+        public async Task<List<Product>> GetAllProductsAsync()
         {
             return await _context.Product.ToListAsync(); // use include for foreign key connections here
         }
 
-        public async Task<Product?> FindProductById(int productId)
+        public async Task<Product?> FindProductByIdAsync(int productId)
         {
             return await _context.Product.FirstOrDefaultAsync(i => i.Id == productId); // use include for foreign key connections here
         }
 
-        public async Task<List<Product>> FindProductByType(string productType)
+        public async Task<List<Product>> FindProductByTypeAsync(string productType)
         {
             return await _context.Product.Where(t => t.Type == productType).ToListAsync(); // use include for foreign key connections here
         }
 
         // Create
-        public async Task<Product?> CreateProduct(Product newProduct)
+        public async Task<Product?> CreateProductAsync(Product newProduct)
         {
             _context.Product.Add(newProduct);
             await _context.SaveChangesAsync();
@@ -43,9 +43,9 @@
         }
 
         // Delete
-        public async Task<Product?> DeleteProductById(int productId)
+        public async Task<Product?> DeleteProductByIdAsync(int productId)
         {
-            var product = await FindProductById(productId);
+            var product = await FindProductByIdAsync(productId);
 
             if (product != null)
             {
@@ -57,9 +57,9 @@
         }
 
         // Update
-        public async Task<Product?> UpdateProductById(int productId, Product updateProduct)
+        public async Task<Product?> UpdateProductByIdAsync(int productId, Product updateProduct)
         {
-            var product = await FindProductById(productId);
+            var product = await FindProductByIdAsync(productId);
 
             if (product != null)
             {

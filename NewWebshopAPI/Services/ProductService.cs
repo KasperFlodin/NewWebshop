@@ -1,7 +1,4 @@
-﻿using NewWebshopAPI.DTOs.ProductDTOs;
-using NewWebshopAPI.Repositories;
-
-namespace NewWebshopAPI.Services
+﻿namespace NewWebshopAPI.Services
 {
     public interface IProductService
     {
@@ -45,7 +42,7 @@ namespace NewWebshopAPI.Services
 
         public async Task<List<ProductResponse>> GetAllProductsAsync()
         {
-            List<Product> products = await _productRepository.GetAllProducts();
+            List<Product> products = await _productRepository.GetAllProductsAsync();
 
             if (products == null)
             {
@@ -56,7 +53,7 @@ namespace NewWebshopAPI.Services
 
         public async Task<ProductResponse> FindProductByIdAsync(int productId)
         {
-            var product = await _productRepository.FindProductById(productId);
+            var product = await _productRepository.FindProductByIdAsync(productId);
 
             if (product != null)
             {
@@ -68,7 +65,7 @@ namespace NewWebshopAPI.Services
 
         public async Task<List<ProductResponse>> FindProductByTypeAsync(string productType)
         {
-            List<Product> product = await _productRepository.FindProductByType(productType);
+            List<Product> product = await _productRepository.FindProductByTypeAsync(productType);
 
             if (product == null)
             {
@@ -81,7 +78,7 @@ namespace NewWebshopAPI.Services
 
         public async Task<ProductResponse> CreateProductAsync(ProductRequest newProduct)
         {
-            var product = await _productRepository.CreateProduct(MapProductRequestToProduct(newProduct));
+            var product = await _productRepository.CreateProductAsync(MapProductRequestToProduct(newProduct));
 
             if (product == null)
             {
@@ -93,7 +90,7 @@ namespace NewWebshopAPI.Services
 
         public async Task<ProductResponse> DeleteProductByIdAsync(int productId)
         {
-            var product = await _productRepository.DeleteProductById(productId);
+            var product = await _productRepository.DeleteProductByIdAsync(productId);
 
             if (product != null)
             {
@@ -104,7 +101,7 @@ namespace NewWebshopAPI.Services
 
         public async Task<ProductResponse> UpdateProductByIdAsync(int productId, ProductRequest updateProduct)
         {
-            var product = await _productRepository.UpdateProductById(productId, MapProductRequestToProduct(updateProduct));
+            var product = await _productRepository.UpdateProductByIdAsync(productId, MapProductRequestToProduct(updateProduct));
 
             if (product != null)
             {
