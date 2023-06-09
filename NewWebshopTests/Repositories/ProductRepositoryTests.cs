@@ -1,4 +1,6 @@
-﻿namespace NewWebshopTests.Repositories
+﻿using Microsoft.SqlServer.Server;
+
+namespace NewWebshopTests.Repositories
 {
     public class ProductRepositoryTests
     {
@@ -250,6 +252,50 @@
             // Assert
             Assert.Null(result);
         }
+
+        [Fact]
+        public async void DeleteProductByIdAsync_ShouldReturnDeletedProduct_WhenProductIsDeleted()
+        {
+            // Arrange
+            await _context.Database.EnsureDeletedAsync();
+
+            int productId = 1;
+
+            Product product = new Product()
+            {
+                Id = 1,
+                Name = "ChairTest",
+                Price = 222,
+                Type = "Chair",
+                Photolink = "link"
+            };
+
+            _context.Product.Add(product);
+            await _context.SaveChangesAsync();
+
+            // Act
+            var result = await _productRepository.DeleteProductByIdAsync(productId);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.IsType<Product>(result);
+            Assert.Equal(product.Id, result.Id);
+        }
+
+        [Fact]
+        public async void DeleteProductByIdAsync_ShouldReturnNull_WhenUserDoesNotExist()
+        {
+            // Arrange
+            await _context.Database.EnsureDeletedAsync();
+
+            // Act
+            var result = await _productRepository.DeleteProductByIdAsync(1);
+
+            // Assert
+            Assert.Null(result);
+        }
+
+
 
     }
 }
