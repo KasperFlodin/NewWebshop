@@ -25,6 +25,7 @@
             {
                 Id = product.Id,
                 Name = product.Name,
+                Price = product.Price,
                 Type = product.Type,
                 Photolink = product.Photolink,
             };
