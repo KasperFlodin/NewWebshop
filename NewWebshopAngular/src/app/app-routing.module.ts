@@ -2,7 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: 'product', loadComponent: () => import('./_components/product/product.component').then(_ => _.ProductComponent) }
+  { path: 'products', loadComponent: () => import('./_components/product/product.component').then(_ => _.ProductComponent) },
+
+
+  // otherwise redirect to home
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({
