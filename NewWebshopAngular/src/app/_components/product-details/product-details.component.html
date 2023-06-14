@@ -1,0 +1,19 @@
+<p>product-details works!</p>
+
+<div class="mt-5">
+    <div class="row p-0 product-details border border-1 rounded-1 shadow-3-strong" *ngIf="productdetails">
+        <div class="col-sm-9 p-0">
+            <div class="product-img img-fluid rounded-1" class="product-img img-fluid rounded-1" alt="" >
+                <img src="{{productdetails.photolink}}" class="product-detail-single">
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="details">
+                <h3>{{productdetails.name}}</h3>
+                <h3>{{productdetails.price}}kr</h3>
+            </div>
+            <h3>Type: {{productdetails.type}}</h3>
+
+        </div>
+    </div>
+</div>

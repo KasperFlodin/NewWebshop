@@ -11,8 +11,8 @@ using NewWebshopAPI.Database;
 namespace NewWebshopAPI.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230608060034_migrate")]
-    partial class migrate
+    [Migration("20230614064330_newwebshop")]
+    partial class newwebshop
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

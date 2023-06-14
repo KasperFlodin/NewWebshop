@@ -10,12 +10,17 @@ import { ProductService } from 'src/app/_services/product.service';
   imports: [CommonModule, RouterModule],
   templateUrl: './product.component.html',
   styles: [`
-  
+
+  .card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
   `]
 })
 export class ProductComponent implements OnInit {
-
-  products: Product[] = [];
+  products: Product[] | undefined;
 
   constructor(private productService:ProductService) { }
 
