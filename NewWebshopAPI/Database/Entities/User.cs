@@ -29,6 +29,6 @@
         [Column(TypeName = "nvarchar(32)")]
         public string Password { get; set; }
 
-        //public Role Role { get; set; }
+        public Role Role { get; set; }
     }
 }

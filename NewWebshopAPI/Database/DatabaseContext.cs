@@ -4,7 +4,7 @@
     {
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
         public DbSet<Product> Product { get; set; }
-        //public DbSet<User> User { get; set; }
+        public DbSet<User> User { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@
                     Zip = "4321",
                     Email = "Peter.lund@gmail.com",
                     Password = "123456",
-                    //Role = Role.Admin,
+                    Role = Role.Admin,
                 },
                 new User
                 {
@@ -34,7 +34,7 @@
                     Zip = "1144",
                     Email = "Simon.green@gmail.com",
                     Password = "123456",
-                    /*Role = Role.User,*/
+                    Role = Role.User,
                 });
 
             // Car products
