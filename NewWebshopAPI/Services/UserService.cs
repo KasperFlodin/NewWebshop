@@ -5,7 +5,7 @@ namespace NewWebshopAPI.Services
     public interface IUserService
     {
         Task<List<UserResponse>> GetAllAsync();
-        Task<UserResponse> GetByIdAsync(int userId);
+        Task<UserResponse> GetUserByIdAsync(int userId);
         Task<UserResponse> RegisterUserAsync(RegisterUser newUser);
         Task<UserResponse> UpdateAsync(int userId, UserRequest updateUser);
         Task<UserResponse> DeleteAsync(int userId);
@@ -23,7 +23,7 @@ namespace NewWebshopAPI.Services
             return users?.Select(user => MapUserToUserResponse(user)).ToList();
         }
 
-        public async Task<UserResponse> GetByIdAsync(int userId)
+        public async Task<UserResponse> GetUserByIdAsync(int userId)
         {
             User user = await _userRepository.GetById(userId);
             return MapUserToUserResponse(user);

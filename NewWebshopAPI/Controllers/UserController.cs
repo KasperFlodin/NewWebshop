@@ -58,5 +58,89 @@ namespace NewWebshopAPI.Controllers
                 return Problem(ex.Message);
             }
         }
+
+        /*[Authorize(Role.Admin, Role.User)] */        // Only admins can access this endpoint
+        [HttpGet]
+        [Route("{userId}")]
+        public async Task<IActionResult> GetById([FromRoute] int userId)
+        {
+            try
+            {
+                // only admins can access other user records
+                UserResponse currentUser = (UserResponse)HttpContext.Items["User"];
+
+                if (currentUser != null && userId != currentUser.Id && currentUser.Role != Role.Admin)
+                {
+                    return Unauthorized(new { message = "You are not authorized" });
+                }
+
+                UserResponse user = await _userService.GetUserByIdAsync(userId);
+
+                if (user == null)
+                {
+                    return NoContent();
+                }
+
+                return Ok(user);
+
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+
+        /*[Authorize(Role.Admin, Role.User)]*/         // Only admins can access this endpoint
+        [HttpPut]
+        [Route("{userId}")]
+        public async Task<IActionResult> Update([FromRoute] int userId, [FromBody] UserRequest updateUser)
+        {
+            try
+            {
+                var userResponse = await _userService.UpdateAsync(userId, updateUser);
+
+                if (userResponse == null)
+                {
+                    return NoContent();
+                }
+
+                return Ok(userResponse);
+
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+
+        //[Authorize(Role.Admin)]
+        [HttpDelete]
+        [Route("{userId}")]
+        public async Task<IActionResult> Delete([FromRoute] int userId)
+        {
+            try
+            {
+                UserResponse currentUser = (UserResponse)HttpContext.Items["User"];
+
+                if (currentUser != null && userId != currentUser.Id && currentUser.Role != Role.Admin)
+                {
+                    return Unauthorized(new { message = "You are not authorized" });
+                }
+
+                UserResponse user = await _userService.DeleteAsync(userId);
+
+                if (user == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+
     }
 }
