@@ -67,12 +67,12 @@ namespace NewWebshopAPI.Controllers
             try
             {
                 // only admins can access other user records
-                UserResponse currentUser = (UserResponse)HttpContext.Items["User"];
+                //UserResponse currentUser = (UserResponse)HttpContext.Items["User"];
 
-                if (currentUser != null && userId != currentUser.Id && currentUser.Role != Role.Admin)
-                {
-                    return Unauthorized(new { message = "You are not authorized" });
-                }
+                //if (currentUser != null && userId != currentUser.Id && currentUser.Role != Role.Admin)
+                //{
+                //    return Unauthorized(new { message = "You are not authorized" });
+                //}
 
                 UserResponse user = await _userService.GetUserByIdAsync(userId);
 
@@ -120,12 +120,12 @@ namespace NewWebshopAPI.Controllers
         {
             try
             {
-                UserResponse currentUser = (UserResponse)HttpContext.Items["User"];
+                //UserResponse currentUser = (UserResponse)HttpContext.Items["User"];
 
-                if (currentUser != null && userId != currentUser.Id && currentUser.Role != Role.Admin)
-                {
-                    return Unauthorized(new { message = "You are not authorized" });
-                }
+                //if (currentUser != null && userId != currentUser.Id && currentUser.Role != Role.Admin)
+                //{
+                //    return Unauthorized(new { message = "You are not authorized" });
+                //}
 
                 UserResponse user = await _userService.DeleteAsync(userId);
 

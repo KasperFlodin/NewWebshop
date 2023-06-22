@@ -36,14 +36,13 @@
 
         public async Task<User> Create(User newUser)
         {
-            if (_dbContext.User.Any(u => u.Email == newUser.Email))
-            {
-                throw new Exception("Email " + newUser.Email + " is not available");
-            }
+            //if (_dbContext.User.Any(u => u.Email == newUser.Email))
+            //{
+            //    throw new Exception("Email " + newUser.Email + " is not available");
+            //}
 
             _dbContext.User.Add(newUser);
             await _dbContext.SaveChangesAsync();
-
             return newUser;
         }
 
