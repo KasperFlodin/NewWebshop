@@ -6,3 +6,4 @@ global using NewWebshopAPI.Repositories;
 global using NewWebshopAPI.Services;
 global using Moq;
 global using NewWebshopAPI.DTOs.ProductDTOs;
+global using NewWebshopAPI.DTOs.UserDTOs;
