@@ -163,5 +163,57 @@
             Assert.Equal(user.Role, result.Role);
         }
 
+        //[Fact]
+        //public async void CreateAsync_ShouldReturnUserResponse_WhenCreateIsSuccess()
+        //{
+        //    // Arrange
+        //    UserRequest newUser = new()
+        //    {
+        //        FirstName = "Peter",
+        //        LastName = "Plys",
+        //        Phone = "12345678",
+        //        Address = "Hunderedemeterskoven 1",
+        //        City = "Byen",
+        //        Zip = "1234",
+        //        Email = "peter.plys@gmail.com",
+        //        Password = "123456",
+        //        Role = Role.Admin,
+        //    };
+        //    int userId = 1;
+        //    User user = new()
+        //    {
+        //        Id = userId,
+        //        FirstName = "Peter",
+        //        LastName = "Plys",
+        //        Phone = "12345678",
+        //        Address = "Hunderedemeterskoven 1",
+        //        City = "Byen",
+        //        Zip = "1234",
+        //        Email = "peter.plys@gmail.com",
+        //        Password = "123456",
+        //        Role = Role.Admin,
+        //    };
+
+        //    _userRepositoryMock
+        //        .Setup(x => x.Create(It.IsAny<User>()))
+        //        .ReturnsAsync(user);
+
+        //    // Act
+        //    var result = await _userService.RegisterUserAsync(newUser);
+
+        //    // Assert
+        //    Assert.NotNull(result);
+        //    Assert.IsType<UserResponse>(result);
+        //    Assert.Equal(user.Id, result.Id);
+        //    Assert.Equal(user.FirstName, result.FirstName);
+        //    Assert.Equal(user.LastName, result.LastName);
+        //    Assert.Equal(user.Phone, result.Phone);
+        //    Assert.Equal(user.Address, result.Address);
+        //    Assert.Equal(user.Zip, result.Zip);
+        //    Assert.Equal(user.Email, result.Email);
+        //    Assert.Equal(user.Password, result.Password);
+        //    Assert.Equal(user.Role, result.IsAdmin);
+        }
+
     }
 }
