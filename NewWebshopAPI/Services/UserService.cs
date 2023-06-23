@@ -1,4 +1,5 @@
-﻿using NewWebshopAPI.DTOs.UserDTOs;
+﻿using NewWebshopAPI.Database.Entities;
+using NewWebshopAPI.DTOs.UserDTOs;
 
 namespace NewWebshopAPI.Services
 {
@@ -6,6 +7,7 @@ namespace NewWebshopAPI.Services
     {
         Task<List<UserResponse>> GetAllAsync();
         Task<UserResponse> GetUserByIdAsync(int userId);
+        Task<UserResponse> GetUserByEmailAsync(string userEmail);
         Task<UserResponse> RegisterUserAsync(RegisterUser newUser);
         Task<UserResponse> UpdateAsync(int userId, UserRequest updateUser);
         Task<UserResponse> DeleteAsync(int userId);
@@ -25,8 +27,23 @@ namespace NewWebshopAPI.Services
 
         public async Task<UserResponse> GetUserByIdAsync(int userId)
         {
-            User user = await _userRepository.GetById(userId);
-            return MapUserToUserResponse(user);
+            var user = await _userRepository.GetById(userId);
+
+            if (user != null)
+            {
+                return MapUserToUserResponse(user);
+            }
+            return null;
+        }
+
+        public async Task<UserResponse> GetUserByEmailAsync(string userEmail)
+        {
+            User user = await _userRepository.GetByEmail(userEmail);
+            if (user != null) 
+            {
+                return MapUserToUserResponse(user);
+            }
+            return null;
         }
 
         public async Task<UserResponse> RegisterUserAsync(RegisterUser newUser)

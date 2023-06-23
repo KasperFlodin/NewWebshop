@@ -178,6 +178,21 @@ namespace NewWebshopTests.Services
         }
 
         [Fact]
+        public async void FindByIdAsync_ShoudReturnNull_WhenCarDoesNotExists()
+        {
+            // Arrange            
+            _productRepositoryMock
+                .Setup(x => x.FindProductByIdAsync(It.IsAny<int>()))
+                .ReturnsAsync(() => null);
+
+            // Act
+            var result = await _productService.FindProductByIdAsync(1);
+
+            // Assert
+            Assert.Null(result);
+        }
+
+        [Fact]
         public async void UpdateProductByIdAsync_ShouldChangeValueOnCar_WhenProductExists()
         {
             // Arrange
