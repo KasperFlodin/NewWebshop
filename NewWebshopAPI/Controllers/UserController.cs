@@ -76,9 +76,9 @@ namespace NewWebshopAPI.Controllers
 
                 UserResponse user = await _userService.GetUserByIdAsync(userId);
 
-                if (user == null)
+                if (user is null)
                 {
-                    return NoContent();
+                    return NotFound();
                 }
 
                 return Ok(user);
@@ -97,7 +97,7 @@ namespace NewWebshopAPI.Controllers
         {
             try
             {
-                var userResponse = await _userService.UpdateAsync(userId, updateUser);
+                var userResponse = await _userService.UpdateUserByIdAsync(userId, updateUser);
 
                 if (userResponse == null)
                 {
@@ -127,7 +127,7 @@ namespace NewWebshopAPI.Controllers
                 //    return Unauthorized(new { message = "You are not authorized" });
                 //}
 
-                UserResponse user = await _userService.DeleteAsync(userId);
+                UserResponse user = await _userService.DeleteUserByIdAsync(userId);
 
                 if (user == null)
                 {

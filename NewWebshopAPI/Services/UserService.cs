@@ -9,8 +9,8 @@ namespace NewWebshopAPI.Services
         Task<UserResponse> GetUserByIdAsync(int userId);
         Task<UserResponse> GetUserByEmailAsync(string userEmail);
         Task<UserResponse> RegisterUserAsync(RegisterUser newUser);
-        Task<UserResponse> UpdateAsync(int userId, UserRequest updateUser);
-        Task<UserResponse> DeleteAsync(int userId);
+        Task<UserResponse> UpdateUserByIdAsync(int userId, UserRequest updateUser);
+        Task<UserResponse> DeleteUserByIdAsync(int userId);
     }
     public class UserService : IUserService
     {
@@ -48,48 +48,36 @@ namespace NewWebshopAPI.Services
 
         public async Task<UserResponse> RegisterUserAsync(RegisterUser newUser)
         {
-            User user = new()
+            
+
+            var user = await _userRepository.Create(MapRegisterUserToUser(newUser));
+
+            if (user is null)
             {
-                FirstName = newUser.FirstName,
-                LastName = newUser.LastName,
-                Phone = newUser.Phone,
-                Address = newUser.Address,
-                City = newUser.City,
-                Zip = newUser.Zip,
-                Email = newUser.Email,
-                Password = newUser.Password,
-                Role = Role.User,
-            };
-
-            user = await _userRepository.Create(user);
-
-            return MapUserToUserResponse(user);
-        }
-
-        public async Task<UserResponse> UpdateAsync(int userId, UserRequest updateUser)
-        {
-            User user = new()
-            {
-                FirstName = updateUser.FirstName,
-                LastName = updateUser.LastName,
-                Phone = updateUser.Phone,
-                Address = updateUser.Address,
-                City = updateUser.City,
-                Zip = updateUser.Zip,
-                Email = updateUser.Email,
-            };
-
-            // optional password
-            if (updateUser.Password != null && updateUser.Password != string.Empty)
-            {
-                user.Password = updateUser.Password;
+                throw new ArgumentNullException();
             }
 
-            user = await _userRepository.Update(userId, user);
-
             return MapUserToUserResponse(user);
         }
-        public async Task<UserResponse> DeleteAsync(int userId)
+
+        public async Task<UserResponse> UpdateUserByIdAsync(int userId, UserRequest updateUser)
+        {
+            var user = await _userRepository.Update(userId, MapUserRequestToUser(updateUser));
+
+            if (user != null)
+            {
+                return MapUserToUserResponse(user);
+            }
+
+            // optional password
+            //if (updateUser.Password != null && updateUser.Password != string.Empty)
+            //{
+            //    user.Password = updateUser.Password;
+            //}
+
+            return null;
+        }
+        public async Task<UserResponse> DeleteUserByIdAsync(int userId)
         {
             User user = await _userRepository.Delete(userId);
 
@@ -114,6 +102,36 @@ namespace NewWebshopAPI.Services
                 Zip = user.Zip,
                 Email = user.Email,
                 Role = user.Role,
+            };
+        }
+
+        private User MapRegisterUserToUser(RegisterUser userRegister)
+        {
+            return new User
+            {
+                FirstName = userRegister.FirstName,
+                LastName = userRegister.LastName,
+                Phone = userRegister.Phone,
+                Address = userRegister.Address,
+                City = userRegister.City,
+                Zip = userRegister.Zip,
+                Email = userRegister.Email,
+                Password = userRegister.Password,
+            };
+        }
+        private User MapUserRequestToUser(UserRequest userRequest)
+        {
+            return new User
+            {
+                FirstName = userRequest.FirstName,
+                LastName = userRequest.LastName,
+                Phone = userRequest.Phone,
+                Address = userRequest.Address,
+                City = userRequest.City,
+                Zip = userRequest.Zip,
+                Email = userRequest.Email,
+                Password = userRequest.Password,
+                Role = userRequest.Role,
             };
         }
     }

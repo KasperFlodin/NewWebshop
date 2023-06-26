@@ -245,7 +245,7 @@ namespace NewWebshopTests.Controllers
             };
 
             _userServiceMock
-                .Setup(x => x.UpdateAsync(It.IsAny<int>(), It.IsAny<UserRequest>()))
+                .Setup(x => x.UpdateUserByIdAsync(It.IsAny<int>(), It.IsAny<UserRequest>()))
                 .ReturnsAsync(userResponse);
 
             // Act
@@ -275,7 +275,7 @@ namespace NewWebshopTests.Controllers
             int userId = 1;
 
             _userServiceMock
-                .Setup(x => x.UpdateAsync(It.IsAny<int>(), It.IsAny<UserRequest>()))
+                .Setup(x => x.UpdateUserByIdAsync(It.IsAny<int>(), It.IsAny<UserRequest>()))
                 .ReturnsAsync(() => throw new Exception("This is an exception"));
 
             // Act
@@ -305,7 +305,7 @@ namespace NewWebshopTests.Controllers
             };
 
             _userServiceMock
-                .Setup(x => x.DeleteAsync(It.IsAny<int>()))
+                .Setup(x => x.DeleteUserByIdAsync(It.IsAny<int>()))
                 .ReturnsAsync(userResponse);
 
             // Act
@@ -322,7 +322,7 @@ namespace NewWebshopTests.Controllers
             int userId = 1;
 
             _userServiceMock
-                .Setup(x => x.DeleteAsync(It.IsAny<int>())).ReturnsAsync(() => null);
+                .Setup(x => x.DeleteUserByIdAsync(It.IsAny<int>())).ReturnsAsync(() => null);
 
             // Act
             var result = (IStatusCodeActionResult)await _userController.Delete(userId);
