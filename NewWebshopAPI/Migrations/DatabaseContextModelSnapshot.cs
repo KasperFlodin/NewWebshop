@@ -135,6 +135,9 @@ namespace NewWebshopAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(8)");
 
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
                     b.Property<string>("Zip")
                         .IsRequired()
                         .HasColumnType("nvarchar(4)");
@@ -154,6 +157,7 @@ namespace NewWebshopAPI.Migrations
                             LastName = "Lund",
                             Password = "123456",
                             Phone = "12345678",
+                            Role = 0,
                             Zip = "4321"
                         },
                         new
@@ -166,6 +170,7 @@ namespace NewWebshopAPI.Migrations
                             LastName = "Green",
                             Password = "123456",
                             Phone = "11223344",
+                            Role = 1,
                             Zip = "1144"
                         });
                 });

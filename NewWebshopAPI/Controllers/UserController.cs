@@ -30,7 +30,7 @@ namespace NewWebshopAPI.Controllers
 
                 if (users.Count == 0)
                 {
-                    return NoContent();
+                    return NotFound();
                 }
 
                 return Ok(users);
@@ -49,9 +49,7 @@ namespace NewWebshopAPI.Controllers
             try
             {
                 UserResponse user = await _userService.RegisterUserAsync(newUser);
-
                 return Ok(user);
-
             }
             catch (Exception ex)
             {
@@ -73,16 +71,13 @@ namespace NewWebshopAPI.Controllers
                 //{
                 //    return Unauthorized(new { message = "You are not authorized" });
                 //}
-
-                UserResponse user = await _userService.GetUserByIdAsync(userId);
+                var user = await _userService.GetUserByIdAsync(userId);
 
                 if (user is null)
                 {
                     return NotFound();
                 }
-
                 return Ok(user);
-
             }
             catch (Exception ex)
             {
@@ -101,11 +96,9 @@ namespace NewWebshopAPI.Controllers
 
                 if (userResponse == null)
                 {
-                    return NoContent();
+                    return NotFound();
                 }
-
                 return Ok(userResponse);
-
             }
             catch (Exception ex)
             {
@@ -126,14 +119,12 @@ namespace NewWebshopAPI.Controllers
                 //{
                 //    return Unauthorized(new { message = "You are not authorized" });
                 //}
-
                 UserResponse user = await _userService.DeleteUserByIdAsync(userId);
 
                 if (user == null)
                 {
                     return NotFound();
                 }
-
                 return Ok(user);
             }
             catch (Exception ex)

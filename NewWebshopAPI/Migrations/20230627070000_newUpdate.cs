@@ -7,7 +7,7 @@
 namespace NewWebshopAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class newwebshop : Migration
+    public partial class newUpdate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -41,7 +41,8 @@ namespace NewWebshopAPI.Migrations
                     City = table.Column<string>(type: "nvarchar(32)", nullable: false),
                     Zip = table.Column<string>(type: "nvarchar(4)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(32)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(32)", nullable: false)
+                    Password = table.Column<string>(type: "nvarchar(32)", nullable: false),
+                    Role = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -63,11 +64,11 @@ namespace NewWebshopAPI.Migrations
 
             migrationBuilder.InsertData(
                 table: "User",
-                columns: new[] { "Id", "Address", "City", "Email", "FirstName", "LastName", "Password", "Phone", "Zip" },
+                columns: new[] { "Id", "Address", "City", "Email", "FirstName", "LastName", "Password", "Phone", "Role", "Zip" },
                 values: new object[,]
                 {
-                    { 1, "Meterskoven 1", "Byen", "Peter.lund@gmail.com", "Peter", "Lund", "123456", "12345678", "4321" },
-                    { 2, "Skoven 2", "Tarn", "Simon.green@gmail.com", "Simon", "Green", "123456", "11223344", "1144" }
+                    { 1, "Meterskoven 1", "Byen", "Peter.lund@gmail.com", "Peter", "Lund", "123456", "12345678", 0, "4321" },
+                    { 2, "Skoven 2", "Tarn", "Simon.green@gmail.com", "Simon", "Green", "123456", "11223344", 1, "1144" }
                 });
         }
 
