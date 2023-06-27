@@ -23,11 +23,6 @@ namespace NewWebshopAPI.Controllers
             {
                 List<UserResponse> users = await _userService.GetAllAsync();
 
-                if (users == null)
-                {
-                    return Problem("No data.");
-                }
-
                 if (users.Count == 0)
                 {
                     return NotFound();
