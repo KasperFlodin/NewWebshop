@@ -13,8 +13,13 @@ import { ProductService } from 'src/app/_services/product.service';
 
   .card-img-top {
     width: 100%;
-    height: 100%;
-    object-fit: contain;
+    height: 15vw;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .product-padding {
+    padding: 2%;
   }
 
   `]

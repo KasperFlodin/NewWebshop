@@ -1,13 +1,15 @@
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col-sm-3" *ngFor="let item of products">
-        <div class="card h-100">
-            <a routerLink="/product-details/{{item.id}}">
-                <img src={{item.photolink}} class="card-img-top" alt="">
-            </a>
-            <div class="card-body">
-                <div class="card-title d-flex justify-content-between">
-                    <h6>Name: {{item.name}}</h6>
-                    <h6>Pris: {{item.price}}</h6>
+<div class="product-padding">
+    <div class="row row-cols-1 row-cols-md-3 g-5">
+        <div class="col-sm-3" *ngFor="let item of products">
+            <div class="card h-100">
+                <a routerLink="/product-details/{{item.id}}">
+                    <img src={{item.photolink}} class="card-img-top" alt="">
+                </a>
+                <div class="card-body">
+                    <div class="card-title d-flex justify-content-between">
+                        <h6>Name: {{item.name}}</h6>
+                        <h6>Pris: {{item.price}}</h6>
+                    </div>
                 </div>
             </div>
         </div>
