@@ -96,6 +96,38 @@ namespace NewWebshopAPI.Migrations
                             Photolink = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_1lHnZy9bZidanyjBJr5JiIuSxNX1Y2LM0_HpV1TQrdwMLbUHY1kcfC12pxme6jzb9qw&usqp=CAU",
                             Price = 600,
                             Type = "Fence"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Beding",
+                            Photolink = "https://aca8cd9d105dbd447097-f6f51e4cef559c9308eef9d726fd38a7.ssl.cf1.rackcdn.com/600262-2.jpg",
+                            Price = 6000,
+                            Type = "Bed"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "alsoBed",
+                            Photolink = "https://aca8cd9d105dbd447097-f6f51e4cef559c9308eef9d726fd38a7.ssl.cf1.rackcdn.com/600262-2.jpg",
+                            Price = 7000,
+                            Type = "Bed"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Keeper",
+                            Photolink = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_1lHnZy9bZidanyjBJr5JiIuSxNX1Y2LM0_HpV1TQrdwMLbUHY1kcfC12pxme6jzb9qw&usqp=CAU",
+                            Price = 1000,
+                            Type = "Fence"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "zzz",
+                            Photolink = "https://aca8cd9d105dbd447097-f6f51e4cef559c9308eef9d726fd38a7.ssl.cf1.rackcdn.com/600262-2.jpg",
+                            Price = 8000,
+                            Type = "Bed"
                         });
                 });
 

@@ -15,7 +15,7 @@ import { ProductService } from 'src/app/_services/product.service';
     width: 100%;
     height: 15vw;
     object-fit: cover;
-    object-position: center;
+    object-position: center top;
   }
 
   .product-padding {

@@ -59,7 +59,11 @@ namespace NewWebshopAPI.Migrations
                     { 3, "WoodChair", "https://cdn.shopify.com/s/files/1/0810/1821/products/Emma-bla-velour-stol-11706.jpg", 299, "Chair" },
                     { 4, "PlasticChair", "https://cdn.shopify.com/s/files/1/0810/1821/products/Emma-bla-velour-stol-11706.jpg", 99, "Chair" },
                     { 5, "Sleepr", "https://aca8cd9d105dbd447097-f6f51e4cef559c9308eef9d726fd38a7.ssl.cf1.rackcdn.com/600262-2.jpg", 5000, "Bed" },
-                    { 6, "z00", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_1lHnZy9bZidanyjBJr5JiIuSxNX1Y2LM0_HpV1TQrdwMLbUHY1kcfC12pxme6jzb9qw&usqp=CAU", 600, "Fence" }
+                    { 6, "z00", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_1lHnZy9bZidanyjBJr5JiIuSxNX1Y2LM0_HpV1TQrdwMLbUHY1kcfC12pxme6jzb9qw&usqp=CAU", 600, "Fence" },
+                    { 7, "Beding", "https://aca8cd9d105dbd447097-f6f51e4cef559c9308eef9d726fd38a7.ssl.cf1.rackcdn.com/600262-2.jpg", 6000, "Bed" },
+                    { 8, "alsoBed", "https://aca8cd9d105dbd447097-f6f51e4cef559c9308eef9d726fd38a7.ssl.cf1.rackcdn.com/600262-2.jpg", 7000, "Bed" },
+                    { 9, "Keeper", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_1lHnZy9bZidanyjBJr5JiIuSxNX1Y2LM0_HpV1TQrdwMLbUHY1kcfC12pxme6jzb9qw&usqp=CAU", 1000, "Fence" },
+                    { 10, "zzz", "https://aca8cd9d105dbd447097-f6f51e4cef559c9308eef9d726fd38a7.ssl.cf1.rackcdn.com/600262-2.jpg", 8000, "Bed" }
                 });
 
             migrationBuilder.InsertData(
