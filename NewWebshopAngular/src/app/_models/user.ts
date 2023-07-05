@@ -10,3 +10,7 @@ export class User {
     zip?: number;
     email?: string;
 }
+
+export function resetUser() {
+    return { id: 0, email: ''};
+  }

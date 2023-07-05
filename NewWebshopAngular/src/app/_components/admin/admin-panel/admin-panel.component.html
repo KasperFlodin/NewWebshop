@@ -1,0 +1,12 @@
+<p>admin-panel works!</p>
+<div class="card mt-4">
+    <h4 class="card-header">Admin</h4>
+    <div class="card-body">
+        <p>This page can be accessed <u>only by administrators</u>.</p>
+        <p class="mb-1">Please Select the panel you wish to access</p>
+        <div style="display: flex; justify-content: space-between; max-width: 40px;">
+            <button (click)="navToProducts()">Product</button>
+            <button (click)="navToUsers()">Users</button>
+        </div>
+    </div>
+</div>

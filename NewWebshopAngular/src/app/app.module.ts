@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { ProductComponent } from './_components/product/product.component';
 import { ProductDetailsComponent } from './_components/product-details/product-details.component';
 import { HomeComponent } from './_components/home/home.component';
-import { UserPanelComponent } from './_components/admin/user-panel/user-panel/user-panel.component';
-import { ProductPanelComponent } from './_components/admin/admin-product/product-panel/product-panel/product-panel.component';
+import { ProductPanelComponent } from './_components/admin/product-panel/product-panel.component';
+import { UserPanelComponent } from './_components/admin/user-panel/user-panel.component';
+import { AdminPanelComponent } from './_components/admin/admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ProductPanelComponent } from './_components/admin/admin-product/product
     ProductDetailsComponent,
     HomeComponent,
     UserPanelComponent,
-    ProductPanelComponent
+    ProductPanelComponent,
+    AdminPanelComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
