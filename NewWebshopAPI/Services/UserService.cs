@@ -22,7 +22,23 @@ namespace NewWebshopAPI.Services
         public async Task<List<UserResponse>> GetAllAsync()
         {
             List<User> users = await _userRepository.GetAll();
-            return users?.Select(user => MapUserToUserResponse(user)).ToList();
+            if (users is null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            return users.Select(user => new UserResponse
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                Address = user.Address,
+                Zip = user.Zip,
+                City = user.City,
+                Phone = user.Phone,
+                //Role = user.Role,
+            }).ToList();
         }
 
         public async Task<UserResponse> GetUserByIdAsync(int userId)

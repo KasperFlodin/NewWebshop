@@ -1,1 +1,60 @@
-<p>product-panel works!</p>
+<div style="min-height: 80vh; margin-top: 20px;" class="">
+    <div class="form-group row" style="max-width: 60%;">
+        
+        <label class="col-sm-2 col-form-label">Product Name</label>
+        <div class="col-sm-10">
+            <input [(ngModel)]="product.name" class="form-control">
+        </div>
+        
+        <label class="col-sm-2 col-form-label">Price</label>
+        <div class="col-sm-10">
+            <input [(ngModel)]="product.price" class="form-control">
+        </div>
+
+        <label class="col-sm-2 col-form-label">Type</label>
+        <div class="col-sm-10">
+            <input [(ngModel)]="product.type" class="form-control">
+        </div>
+
+        <label class="col-sm-2 col-form-label">Photolink</label>
+        <div class="col-sm-10">
+            <input [(ngModel)]="product.photolink" class="form-control">
+        </div>
+
+    </div>
+
+    <button (click)="save()" class="btn btn-sm btn-success">Gem</button>
+  
+    <button (click)="cancel()" class="btn btn-sm btn-default">Annuller</button>
+  
+    <span *ngIf="message" class="text-danger">{{message}}</span>
+  
+    <table class="table table-striped table-hover">
+
+        <thead>
+            <tr>
+                <th style="width: 105px;">Actions</th>
+                <th style="width: 40px;">Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Type</th>
+                <th>Photo</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let product of products">
+                <td style="min-width: 160px;">
+                    <button (click)="edit(product)" class="btn btn-sm btn-primary">Ret</button>
+                    <button (click)="delete(product)" class="btn btn-sm btn-danger">Slet</button>
+                </td>
+                <td>{{product.id}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.type}}</td>
+                <td>{{product.photolink}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
