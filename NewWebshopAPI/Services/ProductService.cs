@@ -54,7 +54,7 @@
 
         public async Task<ProductResponse> FindProductByIdAsync(int productId)
         {
-            var product = await _productRepository.FindProductByIdAsync(productId);
+            Product product = await _productRepository.FindProductByIdAsync(productId);
 
             if (product != null)
             {

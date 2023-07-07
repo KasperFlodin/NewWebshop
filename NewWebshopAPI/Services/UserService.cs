@@ -37,7 +37,7 @@ namespace NewWebshopAPI.Services
                 Zip = user.Zip,
                 City = user.City,
                 Phone = user.Phone,
-                //Role = user.Role,
+                Role = user.Role,
             }).ToList();
         }
 

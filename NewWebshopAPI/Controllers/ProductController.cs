@@ -1,4 +1,6 @@
-﻿namespace NewWebshopAPI.Controllers
+﻿using NewWebshopAPI.DTOs.UserDTOs;
+
+namespace NewWebshopAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -36,14 +38,14 @@
         {
             try
             {
-                var productResponse = await _productService.FindProductByIdAsync(productId);
+                ProductResponse product = await _productService.FindProductByIdAsync(productId);
 
-                if (productResponse == null)
+                if (product is null)
                 {
                     return NotFound();
                 }
 
-                return Ok(productResponse);
+                return Ok(product);
 
             }
             catch (Exception ex)
@@ -67,11 +69,9 @@
                 }
 
                 return Ok(productResponse);
-
             }
             catch (Exception ex)
             {
-
                 return Problem(ex.Message);
             }
         }
@@ -117,14 +117,14 @@
         {
             try
             {
-                var productResponse = await _productService.FindProductByIdAsync(productId);
+                var product = await _productService.DeleteProductByIdAsync(productId);
 
-                if (productResponse == null)
+                if (product == null)
                 {
                     return NotFound();
                 }
 
-                return Ok(productResponse);
+                return Ok(product);
             }
             catch (Exception ex)
             {
