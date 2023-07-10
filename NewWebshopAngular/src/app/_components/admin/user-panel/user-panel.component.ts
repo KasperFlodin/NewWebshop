@@ -35,6 +35,7 @@ export class UserPanelComponent implements OnInit {
       zip: user.zip,
       phone: user.phone,
       email: user.email,
+      role: user.role,
     }
   }
 

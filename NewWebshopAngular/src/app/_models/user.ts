@@ -1,3 +1,4 @@
+import { Role } from "./role";
 
 
 export class User {
@@ -9,6 +10,7 @@ export class User {
     city?: string;  
     zip?: number;
     email?: string;
+    role?: Role;
 }
 
 export function resetUser() {

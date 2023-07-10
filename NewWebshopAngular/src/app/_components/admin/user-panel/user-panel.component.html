@@ -1,1 +1,85 @@
-<p>user-panel works!</p>
+<div style="min-height: 80vh; margin-top: 20px;" class="">
+    <div class="form-group row" style="max-width: 60%;">
+        
+        <label class="col-sm-2 col-form-label">FirstName</label>
+        <div class="col-sm-10">
+            <input [(ngModel)]="user.firstname" class="form-control">
+        </div>
+
+        <label class="col-sm-2 col-form-label">LastName</label>
+        <div class="col-sm-10">
+            <input [(ngModel)]="user.lastname" class="form-control">
+        </div>
+        
+        <label class="col-sm-2 col-form-label">Address</label>
+        <div class="col-sm-10">
+            <input [(ngModel)]="user.address" class="form-control">
+        </div>
+
+        <label class="col-sm-2 col-form-label">City</label>
+        <div class="col-sm-10">
+            <input [(ngModel)]="user.city" class="form-control">
+        </div>
+
+        <label class="col-sm-2 col-form-label">Zip</label>
+        <div class="col-sm-10">
+            <input [(ngModel)]="user.zip" class="form-control">
+        </div>
+
+        <label class="col-sm-2 col-form-label">Phone</label>
+        <div class="col-sm-10">
+            <input [(ngModel)]="user.phone" class="form-control">
+        </div>
+
+        <label class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+            <input [(ngModel)]="user.email" class="form-control">
+        </div>
+
+        <label class="col-sm-2 col-form-label">Role</label>
+        <div class="col-sm-10">
+            <input [(ngModel)]="user.role" class="form-control">
+        </div>
+    </div>
+
+    <button (click)="save()" class="btn btn-sm btn-success">Gem</button>
+    <button (click)="cancel()" class="btn btn-sm btn-default">Annuller</button>
+    <span *ngIf="message" class="text-danger">{{message}}</span>
+  
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th style="width: 105px;">Actions</th>
+                <th style="width: 40px;">Id</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Zip</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td style="min-width: 160px;">
+                    <button (click)="edit(user)" class="btn btn-sm btn-primary">Ret</button>
+                    <button (click)="delete(user)" class="btn btn-sm btn-danger">Slet</button>
+                </td>
+                <td>{{user.id}}</td>
+                <td>{{user.firstname}}</td>
+                <td>{{user.lastname}}</td>
+                <td>{{user.address}}</td>
+                <td>{{user.city}}</td>
+                <td>{{user.zip}}</td>
+                <td>{{user.phone}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.role}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
