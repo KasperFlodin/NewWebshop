@@ -22,7 +22,7 @@ export class UserPanelComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userService.getAll().subscribe(u => this.users = u);
+    this.userService.getAll().subscribe(t => this.users = t);
   }
 
   edit(user: User): void {
