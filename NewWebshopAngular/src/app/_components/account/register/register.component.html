@@ -1,0 +1,83 @@
+<h1>Register component</h1>
+
+<div class="container col-md-6 offset-md-3 mt-5">
+    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+    <div class="card">
+        <h4 class="card-header">Register</h4>
+        <div class="card-body">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label class="form-label">Fornavn</label>
+                    <input type="text" formControlName="firstName" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitting && f.firstname.errors }" />
+                    <div *ngIf="submitting && f.firstname.errors" class="invalid-feedback">
+                        <div *ngIf="f.firstname.errors.required">First Name is required</div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Efternavn</label>
+                    <input type="text" formControlName="lastName" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitting && f.lastname.errors }" />
+                    <div *ngIf="submitting && f.lastName.errors" class="invalid-feedback">
+                        <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Telefon</label>
+                    <input type="text" formControlName="phone" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitting && f.phone.errors }" />
+                    <div *ngIf="submitting && f.phone.errors" class="invalid-feedback">
+                        <div *ngIf="f.phone.errors.required">Phone number is required</div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Adresse</label>
+                    <input type="text" formControlName="address" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitting && f.address.errors }" />
+                    <div *ngIf="submitting && f.address.errors" class="invalid-feedback">
+                        <div *ngIf="f.address.errors.required">Address is required</div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">By</label>
+                    <input type="text" formControlName="city" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitting && f.city.errors }" />
+                    <div *ngIf="submitting && f.city.errors" class="invalid-feedback">
+                        <div *ngIf="f.city.errors.required">City is required</div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Postnummer</label>
+                    <input type="text" formControlName="zip" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitting && f.zip.errors }" />
+                    <div *ngIf="submitting && f.zip.errors" class="invalid-feedback">
+                        <div *ngIf="f.zip.errors.required">Zip code is required</div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="text" formControlName="email" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitting && f.email.errors }" />
+                    <div *ngIf="submitting && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" formControlName="password" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitting && f.password.errors }" />
+                    <div *ngIf="submitting && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                        <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                    </div>
+                </div>
+                <div>
+                    <button [disabled]="loading" class="btn btn-primary">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+                        Register
+                    </button>
+                    <a routerLink="login" class="btn btn-link" (click)="cancel()">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
