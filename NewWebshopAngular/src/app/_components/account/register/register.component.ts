@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, OnInit} from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from 'src/app/_services/account.service';
 
@@ -69,7 +69,23 @@ export class RegisterComponent implements OnInit {
   }
 
   cancel() {
+    this.error = '';
     this.router.navigate(['/']);
+  }
+
+  registerForm: FormGroup = this.resetForm();
+
+  resetForm(): FormGroup {
+    return new FormGroup({
+      firstname: new FormControl(null, Validators.required),
+      lastname: new FormControl(null, Validators.required),
+      phone: new FormControl(null, Validators.required),
+      address: new FormControl(null, Validators.required),
+      city: new FormControl(null, Validators.required),
+      zip: new FormControl(null, [Validators.required, Validators.min(4)]),
+      email: new FormControl(null, Validators.required),
+      password: new FormControl(null, [Validators.required, Validators.min(4)]),
+    });
   }
 
 }
