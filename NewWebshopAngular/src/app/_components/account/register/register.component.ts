@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
 
 @Component({
@@ -37,7 +38,7 @@ export class RegisterComponent implements OnInit {
       city: ['', Validators.required],
       zip: ['', Validators.required],
       email: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(4)]],
     })
   }
 
@@ -66,6 +67,10 @@ export class RegisterComponent implements OnInit {
           this.loading = false;
         }
       });
+  }
+
+  resetUser(): User {
+    return {firstname: '', lastname: '', phone: 0, address: '', city: '', zip: 0, email: ''};
   }
 
   cancel() {

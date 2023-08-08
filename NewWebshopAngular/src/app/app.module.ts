@@ -9,14 +9,12 @@ import { HomeComponent } from './_components/home/home.component';
 import { ProductPanelComponent } from './_components/admin/product-panel/product-panel.component';
 import { UserPanelComponent } from './_components/admin/user-panel/user-panel.component';
 import { AdminPanelComponent } from './_components/admin/admin-panel/admin-panel.component';
-import { RegisterComponent } from './_components/register/register.component';
+// import { RegisterComponent } from './_components/register/register.component';
 import { LoginComponent } from './_components/account/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent,
-    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,6 +26,8 @@ import { LoginComponent } from './_components/account/login/login.component';
     UserPanelComponent,
     ProductPanelComponent,
     AdminPanelComponent,
+    LoginComponent,
+    // RegisterComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

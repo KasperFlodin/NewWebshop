@@ -8,6 +8,8 @@ const routes: Routes = [
   { path: 'adminpanel', loadComponent: () => import('./_components/admin/admin-panel/admin-panel.component').then(_ => _.AdminPanelComponent) },
   { path: 'productpanel', loadComponent: () => import('./_components/admin/product-panel/product-panel.component').then(_ => _.ProductPanelComponent) },
   { path: 'userpanel', loadComponent: () => import('./_components/admin/user-panel/user-panel.component').then(_ => _.UserPanelComponent) },
+  { path: 'login', loadComponent: () => import('./_components/account/login/login.component').then(_ => _.LoginComponent) },
+  { path: 'register', loadComponent: () => import('./_components/account/register/register.component').then(_ => _.RegisterComponent) },
   
   
   // otherwise redirect to home
