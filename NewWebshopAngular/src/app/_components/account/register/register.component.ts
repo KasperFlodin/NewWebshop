@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, 
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
+import { UserService } from 'src/app/_services/user.service';
 
 @Component({
   standalone: true,
@@ -13,33 +14,40 @@ import { AccountService } from 'src/app/_services/account.service';
   styles: [
   ]
 })
+
 export class RegisterComponent implements OnInit {
   form!: FormGroup;
   loading = false;
   submitting = false;
   error?: string;
+  user: User = this.resetUser();
+  users: User[] = [];
 
   constructor(
     private formbuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private accountService: AccountService,
+    private userService: UserService,
   ) { 
     if (this.accountService.currentUserValue) 
     {this.router.navigate(['/'])}
   }
 
   ngOnInit(): void {
-    this.form = this.formbuilder.group({
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
-      phone: ['', Validators.required],
-      address: ['', Validators.required],
-      city: ['', Validators.required],
-      zip: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(4)]],
-    })
+    // this.form = this.formbuilder.group({
+    //   firstname: ['', Validators.required],
+    //   lastname: ['', Validators.required],
+    //   phone: ['', Validators.required],
+    //   address: ['', Validators.required],
+    //   city: ['', Validators.required],
+    //   zip: ['', Validators.required],
+    //   email: ['', Validators.required],
+    //   password: ['', [Validators.required, Validators.minLength(4)]],
+    // })
+
+    this.userService.getAll().subscribe(x => this.users = x);
+
   }
 
   // convenience getter for easy access to form fields
@@ -67,6 +75,34 @@ export class RegisterComponent implements OnInit {
           this.loading = false;
         }
       });
+  }
+
+  save(): void {
+    this.error = '';
+    if (this.user.id == 0) {
+      this.userService.create(this.registerForm.value).subscribe({
+        next: (x) => {
+          this.users.push(x);
+          this.user = this.resetUser();
+        },
+        error: (err) => {
+          console.warn(Object.values(err.console.error.errors).join(', '));
+        }
+      });
+    }
+    // else {
+    //   // update
+    //   this.userService.update(this.user.id, this.registerForm.value).subscribe({
+    //     error: (err) => {
+    //       console.warn(Object.values(err.error.errors).join(', '));
+    //       // err.error.errors dykker ind i arrayet for at finde errors stringen inden i error
+    //     },
+    //     complete: () => {
+    //       this.userService.getAll().subscribe(x => this.users = x);
+    //       this.user = this.resetUser();
+    //     }
+    //   });
+    // }
   }
 
   resetUser(): User {

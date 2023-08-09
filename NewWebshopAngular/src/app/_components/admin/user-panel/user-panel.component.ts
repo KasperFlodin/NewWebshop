@@ -72,16 +72,11 @@ export class UserPanelComponent implements OnInit {
           this.message = Object.values(err.error.errors).join(', ');
         },
         complete: () => {
-
-
-
           this.userService.getAll().subscribe(x => this.users = x);
           this.user = resetUser();
         }
       });
     }
   }
-
-
 
 }

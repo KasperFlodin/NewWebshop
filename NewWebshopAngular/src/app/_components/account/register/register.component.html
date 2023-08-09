@@ -1,14 +1,14 @@
 <h1>Register component</h1>
 
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="registerForm" (ngSubmit)="save()">
 
-    <label>FirstName</label>
-    <div class="col-sm-2 col-form-label">
+    <label class="col-sm-2 col-form-label">FirstName</label>
+    <div class="col-sm-10">
         <input type="text" formControlName="firstname">
     </div>
     
-    <label>LastName</label>
-    <div class="col-sm-2 col-form-label">
+    <label class="col-sm-2 col-form-label">LastName</label>
+    <div class="col-sm-10">
         <input type="text" formControlName="lastname">
     </div>
       
@@ -34,12 +34,15 @@
 
     <label class="col-sm-2 col-form-label">Email</label>
     <div class="col-sm-10">
-        <span class="error" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">please insert email</span>
         <input type="text" formControlName="email">
+        <span class="error" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"> - please insert email</span>
     </div>
 
-    <button [disabled]="!registerForm.valid">Gem</button>
-    <button type="button" (click)="cancel()">Annuller</button>
+    <div class="col-sm-2 col-form-label">
+        <button [disabled]="!registerForm.valid">Gem</button>
+        <button type="button" (click)="cancel()">Annuller</button>
+    </div>
+    
   </form>
 
 <!-- <h1>Register component</h1>
