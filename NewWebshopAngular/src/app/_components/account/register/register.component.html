@@ -39,7 +39,10 @@
     </div>
 
     <div class="col-sm-2 col-form-label">
-        <button [disabled]="!registerForm.valid">Gem</button>
+        <button [disabled]="loading" (click)="save()">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+            Gem
+        </button>
         <button type="button" (click)="cancel()">Annuller</button>
     </div>
     

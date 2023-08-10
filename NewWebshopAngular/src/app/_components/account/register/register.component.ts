@@ -80,7 +80,7 @@ export class RegisterComponent implements OnInit {
   save(): void {
     this.error = '';
     if (this.user.id == 0) {
-      this.userService.create(this.registerForm.value).subscribe({
+      this.userService.create(this.user).subscribe({
         next: (x) => {
           this.users.push(x);
           this.user = this.resetUser();
