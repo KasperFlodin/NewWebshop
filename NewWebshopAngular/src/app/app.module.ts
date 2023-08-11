@@ -11,10 +11,12 @@ import { UserPanelComponent } from './_components/admin/user-panel/user-panel.co
 import { AdminPanelComponent } from './_components/admin/admin-panel/admin-panel.component';
 // import { RegisterComponent } from './_components/register/register.component';
 import { LoginComponent } from './_components/account/login/login.component';
+import { CartComponent } from './_components/cart/cart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

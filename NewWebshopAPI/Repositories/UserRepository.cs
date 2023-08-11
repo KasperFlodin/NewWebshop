@@ -81,10 +81,10 @@
 
             if (user != null)
             {
-                if (_dbContext.User.Any(u => u.Id != userId))
-                {
-                    throw new Exception("Email does not exist");
-                }
+                //if (_dbContext.User.Any(u => u.Id != userId))
+                //{
+                //    throw new Exception("Email does not exist");
+                //}
 
                 _dbContext.User.Remove(user);
                 await _dbContext.SaveChangesAsync();
