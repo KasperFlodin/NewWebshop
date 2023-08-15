@@ -10,6 +10,7 @@ export class User {
     city?: string;  
     zip?: number;
     email?: string;
+    password?: string;
     role?: Role;
 }
 

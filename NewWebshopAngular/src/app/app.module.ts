@@ -12,11 +12,11 @@ import { AdminPanelComponent } from './_components/admin/admin-panel/admin-panel
 // import { RegisterComponent } from './_components/register/register.component';
 import { LoginComponent } from './_components/account/login/login.component';
 import { CartComponent } from './_components/cart/cart.component';
+import { CheckoutComponent } from './_components/cart/checkout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CartComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +30,8 @@ import { CartComponent } from './_components/cart/cart.component';
     AdminPanelComponent,
     LoginComponent,
     // RegisterComponent,
+    CartComponent,
+    CheckoutComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

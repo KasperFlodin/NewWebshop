@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'userpanel', loadComponent: () => import('./_components/admin/user-panel/user-panel.component').then(_ => _.UserPanelComponent) },
   { path: 'login', loadComponent: () => import('./_components/account/login/login.component').then(_ => _.LoginComponent) },
   { path: 'register', loadComponent: () => import('./_components/account/register/register.component').then(_ => _.RegisterComponent) },
+  { path: 'checkout', loadComponent: () => import('./_components/cart/checkout.component').then(_ => _.CheckoutComponent) },
   
   
   // otherwise redirect to home
