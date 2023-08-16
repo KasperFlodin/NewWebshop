@@ -14,7 +14,7 @@
     <tbody>
         <tr *ngFor="let item of cartItems">
             <td>{{item.productId}}</td>
-            <td>{{item.title}}</td>
+            <td>{{item.name}}</td>
             <td class="text-end">{{item.price | currency:'kr.'}}</td>
             <td>
                 <input [(ngModel)]="item.quantity" (ngModelChange)="updateCart()" type="number" min="1"

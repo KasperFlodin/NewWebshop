@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'login', loadComponent: () => import('./_components/account/login/login.component').then(_ => _.LoginComponent) },
   { path: 'register', loadComponent: () => import('./_components/account/register/register.component').then(_ => _.RegisterComponent) },
   { path: 'checkout', loadComponent: () => import('./_components/cart/checkout.component').then(_ => _.CheckoutComponent) },
+  { path: 'cart', loadComponent: () => import('./_components/cart/cart.component').then(_ => _.CartComponent) },
   
   
   // otherwise redirect to home

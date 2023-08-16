@@ -7,17 +7,16 @@ import { CartItem } from '../_models/cartItem';
 })
 export class CartService {
 
-  private basketName = "webshopBasket"
-  currentBasketSubject: BehaviorSubject<CartItem[]>;
-  currentBasket: Observable<CartItem[]>
+  private basketName = "webshopBasket" // localstorage name where our bakset is placed
 
+  currentBasketSubject: BehaviorSubject<CartItem[]>; // current cartitems stored in basket
 
-  
-  
+  currentBasket: Observable<CartItem[]> // observable basket others can subscribe to
+
   constructor() { 
     // when constructor runs, get value stored in localStorage
     this.currentBasketSubject = new BehaviorSubject<CartItem[]>(
-      JSON.parse(localStorage.getItem(this.basketName) || "[]")         // get basketName from localStorage OR create empty array if storage is empty
+      JSON.parse(localStorage.getItem(this.basketName) || "[]")   // get basketName from localStorage OR create empty array if storage is empty
     );
     this.currentBasket = this.currentBasketSubject.asObservable(); 
    }
@@ -28,7 +27,8 @@ export class CartService {
 
   saveBasket(basket: CartItem[]): void {
     localStorage.setItem(this.basketName, JSON.stringify(basket));
-    this.currentBasketSubject.next(basket);         // updates basket value and broadcasts value to subscribers
+    this.currentBasketSubject.next(basket);         
+    // updates basket value and broadcasts value to subscribers
   }
 
   addToBasket(item: CartItem): void {

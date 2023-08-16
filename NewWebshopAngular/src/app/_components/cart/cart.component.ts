@@ -39,7 +39,7 @@ export class CartComponent implements OnInit {
   }
 
   removeItem(item: CartItem): void {
-    if (confirm(`Ønsker du at fjerne ${item.productId} ${item.title}?`)) {
+    if (confirm(`Ønsker du at fjerne ${item.productId} ${item.name}?`)) {
         this.cartItems = this.cartItems.filter(x => x.productId != item.productId);
         this.cartService.saveBasket(this.cartItems);
     }
