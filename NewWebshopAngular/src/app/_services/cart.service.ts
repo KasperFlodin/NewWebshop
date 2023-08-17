@@ -45,6 +45,11 @@ export class CartService {
         }
       }
     });
+    
+    if(!productFound) {
+      basket.push(item);
+    }
+    this.saveBasket(basket);
   }
 
   removeItemFromBasket(productId: number): void {

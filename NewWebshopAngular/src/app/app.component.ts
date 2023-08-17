@@ -12,9 +12,9 @@ import { User } from './_models/user';
 })
 export class AppComponent {
   private role?: string='';
-  basket:CartItem[] = [];
+  basket: CartItem[] = [];
   currentUser!: User | null;
-  showAdminBoard? = false
+  showAdminBoard? = false;
 
   constructor(
     private cartService: CartService,

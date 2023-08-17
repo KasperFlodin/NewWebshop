@@ -19,7 +19,7 @@
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="adminpanel"> Admin Panel</a>
+                    <a class="nav-link" routerLink="adminpanel" *ngIf="showAdminBoard"> Admin Panel</a>
                 </li>
 
                 <li class="nav-item">
@@ -27,8 +27,16 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="login"> Login</a>
-                </li>   
+                    <a class="nav-link" routerLink="login" *ngIf="!currentUser"> Login</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="profile" *ngIf="currentUser"><i class="fa fa-regular fa-user"></i></a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link btn" (click)="logout()" *ngIf="currentUser">Log ud</a>
+            </li>
 
           </ul>
       </div>
