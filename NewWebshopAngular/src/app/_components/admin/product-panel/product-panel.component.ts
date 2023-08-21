@@ -67,9 +67,6 @@ export class ProductPanelComponent implements OnInit{
             this.message = Object.values(err.error.errors).join(', ');
           },
           complete: () => {
-
-
-
             this.productService.getAll().subscribe(x => this.products = x);
             this.product = resetProduct();
           }
