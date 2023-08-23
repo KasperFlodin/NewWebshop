@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from 'src/app/_models/user';
+import { User, resetUser } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
 import { UserService } from 'src/app/_services/user.service';
 
@@ -90,23 +90,23 @@ export class RegisterComponent implements OnInit {
         }
       });
     }
-    // else {
-    //   // update
-    //   this.userService.update(this.user.id, this.registerForm.value).subscribe({
-    //     error: (err) => {
-    //       console.warn(Object.values(err.error.errors).join(', '));
-    //       // err.error.errors dykker ind i arrayet for at finde errors stringen inden i error
-    //     },
-    //     complete: () => {
-    //       this.userService.getAll().subscribe(x => this.users = x);
-    //       this.user = this.resetUser();
-    //     }
-    //   });
-    // }
+    else {
+      // update
+      this.userService.update(this.user).subscribe({
+        error: (err) => {
+          console.warn(Object.values(err.error.errors).join(', '));
+          // err.error.errors dykker ind i arrayet for at finde errors stringen inden i error
+        },
+        complete: () => {
+          this.userService.getAll().subscribe(x => this.users = x);
+          this.user = resetUser();
+        }
+      });
+    }
   }
 
   resetUser(): User {
-    return {firstname: '', lastname: '', phone: 0, address: '', city: '', zip: 0, email: ''};
+    return {firstName: '', lastName: '', phone: 0, address: '', city: '', zip: 0, email: ''};
   }
 
   cancel() {
@@ -118,8 +118,8 @@ export class RegisterComponent implements OnInit {
 
   resetForm(): FormGroup {
     return new FormGroup({
-      firstname: new FormControl(null, Validators.required),
-      lastname: new FormControl(null, Validators.required),
+      firstName: new FormControl(null, Validators.required),
+      lastName: new FormControl(null, Validators.required),
       phone: new FormControl(null, Validators.required),
       address: new FormControl(null, Validators.required),
       city: new FormControl(null, Validators.required),

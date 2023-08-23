@@ -3,12 +3,12 @@
         
         <label class="col-sm-2 col-form-label">FirstName</label>
         <div class="col-sm-10">
-            <input [(ngModel)]="user.firstname" class="form-control">
+            <input [(ngModel)]="user.firstName" class="form-control">
         </div>
 
         <label class="col-sm-2 col-form-label">LastName</label>
         <div class="col-sm-10">
-            <input [(ngModel)]="user.lastname" class="form-control">
+            <input [(ngModel)]="user.lastName" class="form-control">
         </div>
         
         <label class="col-sm-2 col-form-label">Address</label>
@@ -74,8 +74,8 @@
                     <button (click)="delete(user)" class="btn btn-sm btn-danger">Slet</button>
                 </td>
                 <td>{{user.id}}</td>
-                <td>{{user.firstname}}</td>
-                <td>{{user.lastname}}</td>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
                 <td>{{user.address}}</td>
                 <td>{{user.city}}</td>
                 <td>{{user.zip}}</td>

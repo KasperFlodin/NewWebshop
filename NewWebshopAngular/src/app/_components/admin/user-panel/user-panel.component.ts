@@ -28,8 +28,8 @@ export class UserPanelComponent implements OnInit {
   edit(user: User): void {
     this.user = {
       id: user.id,
-      firstname: user.firstname,
-      lastname: user.lastname,
+      firstName: user.firstName,
+      lastName: user.lastName,
       city: user.city,
       address: user.address,
       zip: user.zip,
