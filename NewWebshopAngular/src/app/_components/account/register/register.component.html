@@ -5,6 +5,7 @@
     <label class="col-sm-2 col-form-label">FirstName</label>
     <div class="col-sm-10">
         <input type="text" formControlName="firstName">
+        <span class="error" *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched"> - please insert firstname</span>
     </div>
     
     <label class="col-sm-2 col-form-label">LastName</label>
@@ -39,7 +40,7 @@
     </div>
 
     <div class="col-sm-2 col-form-label">
-        <button [disabled]="loading" (click)="save()">
+        <button [disabled]="!registerForm.valid">
             <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
             Gem
         </button>
@@ -58,10 +59,10 @@
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
                 <div class="mb-3">
                     <label class="form-label">Fornavn</label>
-                    <input type="text" formControlName="firstname" class="form-control"
-                        [ngClass]="{ 'is-invalid': submitting && f.firstname.errors }" />
-                    <div *ngIf="submitting && f.firstname.errors" class="invalid-feedback">
-                        <div *ngIf="f.firstname.errors.required">First Name is required</div>
+                    <input type="text" formControlName="firstName" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitting && f.firstName.errors }" />
+                    <div *ngIf="submitting && f.firstName.errors" class="invalid-feedback">
+                        <div *ngIf="f.firstName.errors.required">First Name is required</div>
                     </div>
                 </div>
                 <div class="mb-3">
