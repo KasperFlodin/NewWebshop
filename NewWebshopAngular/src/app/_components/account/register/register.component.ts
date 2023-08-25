@@ -51,35 +51,35 @@ export class RegisterComponent implements OnInit {
   }
 
   // convenience getter for easy access to form fields
-  get f() { return this.form.controls; }
+  // get f() { return this.form.controls; }
 
-  onSubmit() {
-    this.submitting = true;
+  // onSubmit() {
+  //   this.submitting = true;
 
-    // reset alert on submit
-    this.error = '';
+  //   // reset alert on submit
+  //   this.error = '';
 
-    // stop here if form is invalid
-    if (this.form.invalid) {
-      return;
-    }
-    this.loading = true;
-    this.accountService.register(this.form.value)
-      .subscribe({
-        next: () => {
-          this.router.navigate(['/login']);
-        },
-        error: error => {
-          this.error = error;
-          this.loading = false;
-        }
-      });
-  }
+  //   // stop here if form is invalid
+  //   if (this.form.invalid) {
+  //     return;
+  //   }
+  //   this.loading = true;
+  //   this.accountService.register(this.form.value)
+  //     .subscribe({
+  //       next: () => {
+  //         this.router.navigate(['/login']);
+  //       },
+  //       error: error => {
+  //         this.error = error;
+  //         this.loading = false;
+  //       }
+  //     });
+  // }
 
   save(): void {
     this.error = '';
     if (this.user.id == 0) {
-      this.userService.create(this.user).subscribe({
+      this.userService.create(this.registerForm.value).subscribe({
         next: (x) => {
           this.users.push(x);
           this.user = this.resetUser();
@@ -91,7 +91,7 @@ export class RegisterComponent implements OnInit {
     }
     else {
       // update
-      this.userService.update(this.user).subscribe({
+      this.userService.update(this.user.id, this.registerForm.value).subscribe({
         error: (err) => {
           console.warn(Object.values(err.error.errors).join(', '));
           // err.error.errors dykker ind i arrayet for at finde errors stringen inden i error
