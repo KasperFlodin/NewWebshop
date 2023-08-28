@@ -27,6 +27,7 @@
         public string Email { get; set; }
 
         [Column(TypeName = "nvarchar(32)")]
+        [JsonIgnore]
         public string Password { get; set; }
 
         public Role Role { get; set; }

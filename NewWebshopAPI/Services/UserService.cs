@@ -1,5 +1,6 @@
 ﻿using NewWebshopAPI.Database.Entities;
-using NewWebshopAPI.DTOs.UserDTOs;
+using NewWebshopAPI.DTOs.AuthenticateDTOs;
+using NewWebshopAPI.Repositories;
 
 namespace NewWebshopAPI.Services
 {
@@ -11,6 +12,8 @@ namespace NewWebshopAPI.Services
         Task<UserResponse> RegisterUserAsync(RegisterUser newUser);
         Task<UserResponse> UpdateUserByIdAsync(int userId, UserRequest updateUser);
         Task<UserResponse> DeleteUserByIdAsync(int userId);
+        AuthenticateResponse? Authenticate(AuthenticateRequest model);
+        IEnumerable<User> GetAll();
     }
     public class UserService : IUserService
     {
@@ -150,5 +153,50 @@ namespace NewWebshopAPI.Services
                 Role = userRequest.Role,
             };
         }
+
+        private readonly IJwtUtils _jwtUtils;
+        // Authentication
+        public UserService(IJwtUtils jwtUtils)
+        {
+            _jwtUtils = jwtUtils;
+        }
+
+        public AuthenticateResponse? Authenticate(AuthenticateRequest model)
+        {
+            var user = _users.SingleOrDefault(x => x.Username == model.Email && x.Password == model.Password);
+
+            // return null if user not found
+            if (user == null) return null;
+
+            // authentication successful so generate jwt token
+            var token = _jwtUtils.GenerateJwtToken(user);
+
+            return new AuthenticateResponse(user, token);
+        }
+
+        public async Task<LoginResponse> AuthenticateUserAsync(LoginRequest login)
+        {
+            User user = await _userRepository.GetByEmail(login.Email);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            if (user.Password == login.Password)
+            {
+                LoginResponse response = new()
+                {
+                    Id = user.Id,
+                    Email = user.Email,
+                    Role = user.Role,
+                    Token = _jwtUtils.GenerateJwtToken(user)
+                };
+                return response;
+            }
+
+            return null;
+        }
+
     }
 }

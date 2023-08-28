@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using NewWebshopAPI.DTOs.UserDTOs;
+﻿using NewWebshopAPI.DTOs.AuthenticateDTOs;
 
 namespace NewWebshopAPI.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+    [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -15,7 +15,19 @@ namespace NewWebshopAPI.Controllers
             _userService = userService;
         }
 
-        //[Authorize(Role.Admin)]
+        [AllowAnonymous]
+        [HttpPost("authenticate")]
+        public IActionResult Authenticate(AuthenticateRequest model)
+        {
+            var response = _userService.Authenticate(model);
+
+            if (response == null)
+                return BadRequest(new { message = "Username or password is incorrect" });
+
+            return Ok(response);
+        }
+
+        [Authorize(Role.Admin)]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -36,8 +48,8 @@ namespace NewWebshopAPI.Controllers
             }
         }
 
-        //[AllowAnonymous]        // allow logged out users to access this endpoint
-        [HttpPost]
+        [AllowAnonymous]        // allow logged out users to access this endpoint
+        [HttpPost("authenticate")]
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterUser newUser)
         {
