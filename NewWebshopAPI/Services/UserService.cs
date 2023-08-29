@@ -1,4 +1,5 @@
-﻿using NewWebshopAPI.Database.Entities;
+﻿using NewWebshopAPI.Authorization;
+using NewWebshopAPI.Database.Entities;
 using NewWebshopAPI.DTOs.AuthenticateDTOs;
 using NewWebshopAPI.Repositories;
 
@@ -18,9 +19,10 @@ namespace NewWebshopAPI.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, IJwtUtils jwtUtils)
         {
             _userRepository = userRepository;
+            _jwtUtils = jwtUtils;
         }
         public async Task<List<UserResponse>> GetAllAsync()
         {
@@ -156,14 +158,16 @@ namespace NewWebshopAPI.Services
 
         private readonly IJwtUtils _jwtUtils;
         // Authentication
-        public UserService(IJwtUtils jwtUtils)
+
+        // users hardcoded for simplicity, store in a db with hashed passwords in production applications
+        private List<User> _users = new List<User>
         {
-            _jwtUtils = jwtUtils;
-        }
+            new User { Id = 1, FirstName = "Test", LastName = "User", Email = "test", Password = "test" }
+        };
 
         public AuthenticateResponse? Authenticate(AuthenticateRequest model)
         {
-            var user = _users.SingleOrDefault(x => x.Username == model.Email && x.Password == model.Password);
+            var user = _users.SingleOrDefault(x => x.Email == model.Email && x.Password == model.Password);
 
             // return null if user not found
             if (user == null) return null;
@@ -172,6 +176,11 @@ namespace NewWebshopAPI.Services
             var token = _jwtUtils.GenerateJwtToken(user);
 
             return new AuthenticateResponse(user, token);
+        }
+
+        public IEnumerable<User> GetAll()
+        {
+            return _users;
         }
 
         public async Task<LoginResponse> AuthenticateUserAsync(LoginRequest login)

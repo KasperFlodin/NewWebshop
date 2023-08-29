@@ -1,6 +1,4 @@
-﻿using NewWebshopAPI.DTOs.AuthenticateDTOs;
-
-namespace NewWebshopAPI.Controllers
+﻿namespace NewWebshopAPI.Controllers
 {
     [ApiController]
     [Authorize]
@@ -27,7 +25,7 @@ namespace NewWebshopAPI.Controllers
             return Ok(response);
         }
 
-        [Authorize(Role.Admin)]
+        //[Authorize(Role.Admin)]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {

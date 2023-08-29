@@ -19,4 +19,5 @@ global using NewWebshopAPI.DTOs.LoginDTOs;
 global using NewWebshopAPI.DTOs.LoginResponse;
 global using NewWebshopAPI.DTOs.UserDTOs;
 global using NewWebshopAPI.Authorization;
-global using Microsoft.AspNetCore.Authorization;
+global using NewWebshopAPI.DTOs.AuthenticateDTOs;
+global using NewWebshopAPI.Helpers;
