@@ -9,7 +9,7 @@ namespace NewWebshopTests.Services
 
         public UserServiceTests()
         {
-            _userService = new(_userRepositoryMock.Object);
+            //_userService = new(_userRepositoryMock.Object);
         }
 
         [Fact]

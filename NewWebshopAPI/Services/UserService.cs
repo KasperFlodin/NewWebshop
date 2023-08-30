@@ -14,6 +14,7 @@ namespace NewWebshopAPI.Services
         Task<UserResponse> UpdateUserByIdAsync(int userId, UserRequest updateUser);
         Task<UserResponse> DeleteUserByIdAsync(int userId);
         AuthenticateResponse? Authenticate(AuthenticateRequest model);
+        Task<LoginResponse> AuthenticateUserAsync(LoginRequest login);
         IEnumerable<User> GetAll();
     }
     public class UserService : IUserService

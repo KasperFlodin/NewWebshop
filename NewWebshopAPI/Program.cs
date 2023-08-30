@@ -1,4 +1,4 @@
-using NewWebshopAPI.Helpers;
+
 using NewWebshopAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);

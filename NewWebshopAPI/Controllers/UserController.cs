@@ -13,17 +13,39 @@
             _userService = userService;
         }
 
-        [AllowAnonymous]
-        [HttpPost("authenticate")]
-        public IActionResult Authenticate(AuthenticateRequest model)
+        [AllowAnonymous]        // allow logged out users to access this endpoint
+        [HttpPost]
+        [Route("authenticate")]
+        public async Task<IActionResult> Authenticate([FromBody] LoginRequest login)
         {
-            var response = _userService.Authenticate(model);
+            try
+            {
+                LoginResponse user = await _userService.AuthenticateUserAsync(login);
 
-            if (response == null)
-                return BadRequest(new { message = "Username or password is incorrect" });
+                if (user == null)
+                {
+                    return Unauthorized();
+                }
 
-            return Ok(response);
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
         }
+
+        //[AllowAnonymous]
+        //[HttpPost("authenticate")]
+        //public IActionResult Authenticate(AuthenticateRequest model)
+        //{
+        //    var response = _userService.Authenticate(model);
+
+        //    if (response == null)
+        //        return BadRequest(new { message = "Email or Password is incorrect" });
+
+        //    return Ok(response);
+        //}
 
         //[Authorize(Role.Admin)]
         [HttpGet]
@@ -70,13 +92,13 @@
             try
             {
                 // only admins can access other user records
-                //UserResponse currentUser = (UserResponse)HttpContext.Items["User"];
+                UserResponse currentUser = (UserResponse)HttpContext.Items["User"];
 
-                //if (currentUser != null && userId != currentUser.Id && currentUser.Role != Role.Admin)
-                //{
-                //    return Unauthorized(new { message = "You are not authorized" });
-                //}
-                var user = await _userService.GetUserByIdAsync(userId);
+                if (currentUser != null && userId != currentUser.Id && currentUser.Role != Role.Admin)
+                {
+                    return Unauthorized(new { message = "You are not authorized" });
+                }
+                UserResponse user = await _userService.GetUserByIdAsync(userId);
 
                 if (user is null)
                 {

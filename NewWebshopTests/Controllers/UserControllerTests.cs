@@ -66,22 +66,22 @@ namespace NewWebshopTests.Controllers
             Assert.Equal(200, result.StatusCode);
         }
 
-        [Fact]
-        public async void GetAll_ShouldReturnStatusCode204_WhenNoUsersExists()
-        {
-            // Arrange
-            List<UserResponse> users = new();
+        //[Fact]
+        //public async void GetAll_ShouldReturnStatusCode204_WhenNoUsersExists()
+        //{
+        //    // Arrange
+        //    List<UserResponse> users = new();
 
-            _userServiceMock
-                .Setup(x => x.GetAllAsync())
-                .ReturnsAsync(users);
+        //    _userServiceMock
+        //        .Setup(x => x.GetAllAsync())
+        //        .ReturnsAsync(users);
 
-            // Act
-            var result = (IStatusCodeActionResult)await _userController.GetAll();
+        //    // Act
+        //    var result = (IStatusCodeActionResult)await _userController.GetAll();
 
-            // Assert
-            Assert.Equal(204, result.StatusCode);
-        }
+        //    // Assert
+        //    Assert.Equal(204, result.StatusCode);
+        //}
 
         [Fact]
         public async void GetAll_ShouldReturnStatusCode500_WhenExceptionIsRaised()

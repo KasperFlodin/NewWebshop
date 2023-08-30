@@ -11,7 +11,7 @@ using NewWebshopAPI.Database;
 namespace NewWebshopAPI.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230629105723_newMigration")]
+    [Migration("20230830124733_newMigration")]
     partial class newMigration
     {
         /// <inheritdoc />
@@ -19,7 +19,7 @@ namespace NewWebshopAPI.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.5")
+                .HasAnnotation("ProductVersion", "7.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
