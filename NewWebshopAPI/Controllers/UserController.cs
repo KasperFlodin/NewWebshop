@@ -8,7 +8,6 @@
         private readonly IUserService _userService;
 
         public UserController(IUserService userService)
-
         {
             _userService = userService;
         }
@@ -47,7 +46,7 @@
         //    return Ok(response);
         //}
 
-        //[Authorize(Role.Admin)]
+        [Authorize(Role.Admin)]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -84,7 +83,7 @@
             }
         }
 
-        /*[Authorize(Role.Admin, Role.User)] */        // Only admins can access this endpoint
+        [Authorize(Role.Admin, Role.User)]         // Only admins can access this endpoint
         [HttpGet]
         [Route("{userId}")]
         public async Task<IActionResult> GetById([FromRoute] int userId)
@@ -112,7 +111,7 @@
             }
         }
 
-        /*[Authorize(Role.Admin, Role.User)]*/         // Only admins can access this endpoint
+        [Authorize(Role.Admin, Role.User)]         // Only admins can access this endpoint
         [HttpPut]
         [Route("{userId}")]
         public async Task<IActionResult> Update([FromRoute] int userId, [FromBody] UserRequest updateUser)
@@ -133,19 +132,20 @@
             }
         }
 
-        //[Authorize(Role.Admin)]
+        [Authorize(Role.Admin)]
         [HttpDelete]
         [Route("{userId}")]
         public async Task<IActionResult> Delete([FromRoute] int userId)
         {
             try
             {
-                //UserResponse currentUser = (UserResponse)HttpContext.Items["User"];
+                UserResponse currentUser = (UserResponse)HttpContext.Items["User"];
 
-                //if (currentUser != null && userId != currentUser.Id && currentUser.Role != Role.Admin)
-                //{
-                //    return Unauthorized(new { message = "You are not authorized" });
-                //}
+                if (currentUser != null && userId != currentUser.Id && currentUser.Role != Role.Admin)
+                {
+                    return Unauthorized(new { message = "You are not authorized" });
+                }
+
                 UserResponse user = await _userService.DeleteUserByIdAsync(userId);
 
                 if (user == null)

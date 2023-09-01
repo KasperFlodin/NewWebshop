@@ -1,9 +1,4 @@
-﻿using NewWebshopAPI.Authorization;
-using NewWebshopAPI.Database.Entities;
-using NewWebshopAPI.DTOs.AuthenticateDTOs;
-using NewWebshopAPI.Repositories;
-
-namespace NewWebshopAPI.Services
+﻿namespace NewWebshopAPI.Services
 {
     public interface IUserService
     {
@@ -13,13 +8,15 @@ namespace NewWebshopAPI.Services
         Task<UserResponse> RegisterUserAsync(RegisterUser newUser);
         Task<UserResponse> UpdateUserByIdAsync(int userId, UserRequest updateUser);
         Task<UserResponse> DeleteUserByIdAsync(int userId);
-        AuthenticateResponse? Authenticate(AuthenticateRequest model);
+        //AuthenticateResponse? Authenticate(AuthenticateRequest model);
         Task<LoginResponse> AuthenticateUserAsync(LoginRequest login);
-        IEnumerable<User> GetAll();
+        //IEnumerable<User> GetAll();
     }
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IJwtUtils _jwtUtils;
+
         public UserService(IUserRepository userRepository, IJwtUtils jwtUtils)
         {
             _userRepository = userRepository;
@@ -156,33 +153,27 @@ namespace NewWebshopAPI.Services
                 Role = userRequest.Role,
             };
         }
-
-        private readonly IJwtUtils _jwtUtils;
+        
         // Authentication
 
         // users hardcoded for simplicity, store in a db with hashed passwords in production applications
-        private List<User> _users = new List<User>
-        {
-            new User { Id = 1, FirstName = "Test", LastName = "User", Email = "test", Password = "test" }
-        };
+        //private List<User> _users = new List<User>
+        //{
+        //    new User { Id = 1, FirstName = "Test", LastName = "User", Email = "test", Password = "test" }
+        //};
 
-        public AuthenticateResponse? Authenticate(AuthenticateRequest model)
-        {
-            var user = _users.SingleOrDefault(x => x.Email == model.Email && x.Password == model.Password);
+        //public AuthenticateResponse? Authenticate(AuthenticateRequest model)
+        //{
+        //    var user = _users.SingleOrDefault(x => x.Email == model.Email && x.Password == model.Password);
 
-            // return null if user not found
-            if (user == null) return null;
+        //    // return null if user not found
+        //    if (user == null) return null;
 
-            // authentication successful so generate jwt token
-            var token = _jwtUtils.GenerateJwtToken(user);
+        //    // authentication successful so generate jwt token
+        //    var token = _jwtUtils.GenerateJwtToken(user);
 
-            return new AuthenticateResponse(user, token);
-        }
-
-        public IEnumerable<User> GetAll()
-        {
-            return _users;
-        }
+        //    return new AuthenticateResponse(user, token);
+        //}
 
         public async Task<LoginResponse> AuthenticateUserAsync(LoginRequest login)
         {
