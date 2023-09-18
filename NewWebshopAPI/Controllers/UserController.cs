@@ -12,27 +12,27 @@
             _userService = userService;
         }
 
-        [AllowAnonymous]        // allow logged out users to access this endpoint
-        [HttpPost]
-        [Route("authenticate")]
-        public async Task<IActionResult> Authenticate([FromBody] LoginRequest login)
-        {
-            try
-            {
-                LoginResponse user = await _userService.AuthenticateUserAsync(login);
+        //[AllowAnonymous]        // allow logged out users to access this endpoint
+        //[HttpPost]
+        //[Route("authenticate")]
+        //public async Task<IActionResult> Authenticate([FromBody] LoginRequest login)
+        //{
+        //    try
+        //    {
+        //        LoginResponse user = await _userService.AuthenticateUserAsync(login);
 
-                if (user == null)
-                {
-                    return Unauthorized();
-                }
+        //        if (user == null)
+        //        {
+        //            return Unauthorized();
+        //        }
 
-                return Ok(user);
-            }
-            catch (Exception ex)
-            {
-                return Problem(ex.Message);
-            }
-        }
+        //        return Ok(user);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Problem(ex.Message);
+        //    }
+        //}
 
         //[AllowAnonymous]
         //[HttpPost("authenticate")]
@@ -68,7 +68,7 @@
         }
 
         [AllowAnonymous]        // allow logged out users to access this endpoint
-        [HttpPost("authenticate")]
+        [HttpPost] //("authenticate") inside the http post breaks Swagger
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterUser newUser)
         {
