@@ -66,17 +66,17 @@ export class UserPanelComponent implements OnInit {
         }
       });
     }
-    else {
-      this.userService.update(this.user).subscribe({
-        error: (err) => {
-          this.message = Object.values(err.error.errors).join(', ');
-        },
-        complete: () => {
-          this.userService.getAll().subscribe(x => this.users = x);
-          this.user = resetUser();
-        }
-      });
-    }
+  //   else {
+  //     this.userService.update(this.user).subscribe({
+  //       error: (err) => {
+  //         this.message = Object.values(err.error.errors).join(', ');
+  //       },
+  //       complete: () => {
+  //         this.userService.getAll().subscribe(x => this.users = x);
+  //         this.user = resetUser();
+  //       }
+  //     });
+  //   }
+  // }
   }
-
 }

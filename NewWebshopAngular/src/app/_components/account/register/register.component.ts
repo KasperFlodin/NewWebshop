@@ -89,19 +89,19 @@ export class RegisterComponent implements OnInit {
         }
       });
     }
-    else {
-      // update
-      this.userService.update(this.user.id, this.registerForm.value).subscribe({
-        error: (err) => {
-          console.warn(Object.values(err.error.errors).join(', '));
-          // err.error.errors dykker ind i arrayet for at finde errors stringen inden i error
-        },
-        complete: () => {
-          this.userService.getAll().subscribe(x => this.users = x);
-          this.user = resetUser();
-        }
-      });
-    }
+    // else {
+    //   // update
+    //   this.userService.update(this.user.id, this.registerForm.value).subscribe({
+    //     error: (err) => {
+    //       console.warn(Object.values(err.error.errors).join(', '));
+    //       // err.error.errors dykker ind i arrayet for at finde errors stringen inden i error
+    //     },
+    //     complete: () => {
+    //       this.userService.getAll().subscribe(x => this.users = x);
+    //       this.user = resetUser();
+    //     }
+    //   });
+    // }
   }
 
   resetUser(): User {
