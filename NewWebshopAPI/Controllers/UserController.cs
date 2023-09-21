@@ -68,7 +68,7 @@
         }
 
         [AllowAnonymous]        // allow logged out users to access this endpoint
-        [HttpPost] //("authenticate") inside the http post breaks Swagger
+        [HttpPost] //("authenticate") when placed inside the [httpPost*] it breaks Swagger (Fetcxh error)
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterUser newUser)
         {
