@@ -46,7 +46,8 @@
         //    return Ok(response);
         //}
 
-        [Authorize(Role.Admin)]
+        //[Authorize(Role.Admin)]
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
