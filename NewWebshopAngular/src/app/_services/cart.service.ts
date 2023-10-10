@@ -10,7 +10,7 @@ export class CartService {
   private basketName = "webshopBasket" // localstorage name where our bakset is placed
 
   currentBasketSubject: BehaviorSubject<CartItem[]>; // current cartitems stored in basket
-
+  
   currentBasket: Observable<CartItem[]> // observable basket others can subscribe to
 
   constructor() { 

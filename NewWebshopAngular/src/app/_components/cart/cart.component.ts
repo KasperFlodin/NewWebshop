@@ -18,7 +18,7 @@ import { AccountService } from 'src/app/_services/account.service';
 })
 export class CartComponent implements OnInit {
   cartItems: CartItem[] = []          // list of items in the cart
-  amount: number = 1;
+  amount: number = 0;
 
   constructor(
     public cartService: CartService,
@@ -27,6 +27,7 @@ export class CartComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    // this.amount = this.cartItems.quantity;
     this.cartService.currentBasket.subscribe(x => this.cartItems = x);
   }
 

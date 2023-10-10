@@ -30,6 +30,7 @@ import { AccountService } from 'src/app/_services/account.service';
 export class ProductComponent implements OnInit {
   products: Product[] | undefined;
   productData!: Product;
+  cartData!: CartItem;
 
   constructor(
     private productService: ProductService,
@@ -51,9 +52,19 @@ export class ProductComponent implements OnInit {
     } as CartItem;
   
     this.cartService.addToBasket(item);
+    this.cartData.quantity = this.cartData.quantity+1;
     // if NO user is logged in
     if(!this.accountService.currentUserValue) {
     }
+
+    // if(this.productData != null) {
+      
+    //   // check if user is logged in
+    //   // if(this.accountService.currentUserValue != null) {
+
+    //   }
+    //   console.log(this.productData);
+    // }
   }
 
 }
