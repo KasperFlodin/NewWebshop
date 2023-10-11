@@ -17,8 +17,8 @@ import { AccountService } from 'src/app/_services/account.service';
   ]
 })
 export class CartComponent implements OnInit {
-  cartItems: CartItem[] = []          // list of items in the cart
-  amount: number = 0;
+  cartItems: CartItem[] = [];         // list of items in the cart
+  amount: number = 1;
 
   constructor(
     public cartService: CartService,

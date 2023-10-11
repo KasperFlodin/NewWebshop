@@ -37,6 +37,7 @@
             {
                 Name = productRequest.Name,
                 Type = productRequest.Type,
+                Price = productRequest.Price,
                 Photolink = productRequest.Photolink,
             };
         }

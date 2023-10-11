@@ -17,8 +17,7 @@
             <td>{{item.name}}</td>
             <td class="text-end">{{item.price | currency:'kr.'}}</td>
             <td>
-                <input [(ngModel)]="item.quantity" (ngModelChange)="updateCart()" type="number" min="1"
-                    style="width:55px;">
+                <input [(ngModel)]="item.quantity" (ngModelChange)="updateCart()" type="number" min="1" style="width:55px;">
             </td>
             <td class="text-end">{{(item.price * item.quantity) | currency:'kr.'}}</td>
             <td><button (click)="removeItem(item)" class="btn btn-danger btn-sm">x</button></td>

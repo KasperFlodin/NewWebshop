@@ -20,6 +20,7 @@
                 
                 <li class="nav-item">
                     <a class="nav-link" routerLink="adminpanel" > Admin Panel</a>
+                    <!-- *ngIf="currentUser != null && currentUser.role == 'Admin'" --> <!-- bruges til at give adgang når login / authentication virker -->
                     <!-- *ngIf="showAdminBoard" fjerner admin board så den kan ses når man er admin men det er ikke færdigt --> 
                 </li>
 
@@ -36,7 +37,7 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link btn" (click)="logout()" *ngIf="currentUser">Log ud</a>
+                <a class="nav-link btn" (click)="logout()" *ngIf="currentUser">Logout</a>
             </li>
 
           </ul>

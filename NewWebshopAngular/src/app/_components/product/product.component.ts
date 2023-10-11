@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CartItem } from 'src/app/_models/cartItem';
 import { Product } from 'src/app/_models/product';
@@ -27,10 +27,14 @@ import { AccountService } from 'src/app/_services/account.service';
 
   `]
 })
+
 export class ProductComponent implements OnInit {
   products: Product[] | undefined;
   productData!: Product;
   cartData!: CartItem;
+  amount: number = 1;
+  cartItems: CartItem[] = [];
+
 
   constructor(
     private productService: ProductService,
@@ -39,24 +43,23 @@ export class ProductComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.productService.getAll().subscribe(data => { this.products = data;
-    });
+    this.productService.getAll().subscribe(data => { this.products = data;});
+    this.cartService.currentBasket.subscribe(x => this.cartItems = x);
   }
 
-  addToCart(): void {
-    let item: CartItem = {
+  addToCart(item?: CartItem): void {
+    if (item==null)
+    item = {
       productId: this.productData.id, 
-      price: this.productData.price, 
       name: this.productData.name,
-      quantity: 1 
+      price: this.productData.price, 
+      quantity: this.amount
     } as CartItem;
-  
+
     this.cartService.addToBasket(item);
-    this.cartData.quantity = this.cartData.quantity+1;
     // if NO user is logged in
     if(!this.accountService.currentUserValue) {
     }
-
     // if(this.productData != null) {
       
     //   // check if user is logged in
