@@ -11,7 +11,7 @@ import { User } from './_models/user';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  private role?: string='';
+  role: any;
   basket: CartItem[] = [];
   currentUser!: User | null;
   showAdminBoard? = false;

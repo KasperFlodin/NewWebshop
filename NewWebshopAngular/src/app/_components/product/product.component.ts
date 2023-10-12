@@ -29,6 +29,7 @@ import { AccountService } from 'src/app/_services/account.service';
 })
 
 export class ProductComponent implements OnInit {
+  cartProduct: Product = { id: 0, name: '', price: 0, type: '', photolink: '' };
   products: Product[] | undefined;
   productData!: Product;
   cartData!: CartItem;
@@ -50,13 +51,25 @@ export class ProductComponent implements OnInit {
   addToCart(item?: CartItem): void {
     if (item==null)
     item = {
-      productId: this.productData.id, 
-      name: this.productData.name,
-      price: this.productData.price, 
+      productId: this.cartProduct.id, 
+      name: this.cartProduct.name,
+      price: this.cartProduct.price, 
       quantity: this.amount
     } as CartItem;
 
+
+  // addToCart(item?: CartItem): void {
+  //   if (item==null)
+  //   item = {
+  //     productId: this.productData.id, 
+  //     name: this.productData.name,
+  //     price: this.productData.price, 
+  //     quantity: this.amount
+  //   } as CartItem;
+
     this.cartService.addToBasket(item);
+
+
     // if NO user is logged in
     if(!this.accountService.currentUserValue) {
     }
