@@ -45,7 +45,6 @@ export class CartService {
         }
       }
     });
-    
     if(!productFound) {
       basket.push(item);
     }
@@ -54,7 +53,6 @@ export class CartService {
 
   removeItemFromBasket(productId: number): void {
     let basket = this.currentBasketValue;
-    
     // check if product is present in the cart before removin from array with splice.
 
     for (let i = basket.length; i >= 0; i--) {
