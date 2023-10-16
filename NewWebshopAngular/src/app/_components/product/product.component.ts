@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CartItem } from 'src/app/_models/cartItem';
 import { Product } from 'src/app/_models/product';
 import { ProductService } from 'src/app/_services/product.service';
@@ -41,11 +41,20 @@ export class ProductComponent implements OnInit {
     private productService: ProductService,
     private cartService: CartService,
     private accountService: AccountService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.productService.getAll().subscribe(data => { this.products = data;});
     this.cartService.currentBasket.subscribe(x => this.cartItems = x);
+    // this.route.paramMap.subscribe(params => {
+    //   this.productService.getById(Number(params.get("productId")))
+    // .subscribe(x => this.products = x);
+    // })
+    let productId = this.activatedRoute.snapshot.paramMap.get('productId');
+    console.log(productId)
+
+    productId && this.productService.getById(productId).subscribe(r => {console.log(r); this.productData = r});
   }
 
   addToCart(item?: CartItem): void {
@@ -58,9 +67,8 @@ export class ProductComponent implements OnInit {
     } as CartItem;
 
 
-  // addToCart(item?: CartItem): void {
-  //   if (item==null)
-  //   item = {
+  // addToCart(): void {
+  //   let item: CartItem = {
   //     productId: this.productData.id, 
   //     name: this.productData.name,
   //     price: this.productData.price, 
