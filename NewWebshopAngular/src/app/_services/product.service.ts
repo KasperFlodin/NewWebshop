@@ -18,8 +18,9 @@ export class ProductService {
   }
   //https://localhost:7008/api/.Product/Product/2
 
-  getById(productId: string): Observable<Product> {
-    return this.http.get<Product>(this.apiURL + '/'+ 'Product' + '/' + productId);
+  getById(productId: number): Observable<Product> {
+    return this.http.get<Product>(`${this.apiURL}/ Product /${productId}`);
+    // return this.http.get<Product>(`${this.apiURL}'/' 'Product' + '/'${productId}`);
   }
 
   create(product: Product): Observable<Product> {

@@ -47,14 +47,14 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getAll().subscribe(data => { this.products = data;});
     this.cartService.currentBasket.subscribe(x => this.cartItems = x);
-    // this.route.paramMap.subscribe(params => {
-    //   this.productService.getById(Number(params.get("productId")))
-    // .subscribe(x => this.products = x);
-    // })
-    let productId = this.activatedRoute.snapshot.paramMap.get('productId');
-    console.log(productId)
+    
+    this.activatedRoute.paramMap.subscribe(params => {
+      this.productService.getById(Number(params.get("productId"))).subscribe(x => this.cartProduct = x);
+    })
+    // let productId = this.activatedRoute.snapshot.paramMap.get('productId');
+    // console.log(productId)
 
-    productId && this.productService.getById(productId).subscribe(r => {console.log(r); this.productData = r});
+    // productId && this.productService.getById(productId).subscribe(r => {console.log(r); this.productData = r});
   }
 
   addToCart(item?: CartItem): void {

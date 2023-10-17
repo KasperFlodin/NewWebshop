@@ -21,11 +21,13 @@ export class ProductDetailsComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    let productId = this.activatedRoute.snapshot.paramMap.get('productId');
+    // let productId = this.activatedRoute.snapshot.paramMap.get('productId');
 
-    productId && this.productService.getById(productId).subscribe(result => {console.log(result);
-        this.productdetails = result;
-    });
+    // productId && this.productService.getById(productId).subscribe(result => {console.log(result);
+    //     this.productdetails = result;
+    // });
+
+    
   }
 
   
