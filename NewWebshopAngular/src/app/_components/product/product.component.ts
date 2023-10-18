@@ -51,6 +51,8 @@ export class ProductComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe(params => {
       this.productService.getById(Number(params.get("productId"))).subscribe(x => this.cartProduct = x);
     })
+
+
     // let productId = this.activatedRoute.snapshot.paramMap.get('productId');
     // console.log(productId)
 
